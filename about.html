@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #161813;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.8;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 50px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 36px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 40px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #e6e6e6;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            text-align: left;
+        }
+
+        .about-image {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-text {
+            font-size: 18px;
+            color: #f2f2f2;
+        }
+
+        .mission-section {
+            background-color: #262626;
+            padding: 80px 50px;
+            border-radius: 12px;
+            margin-top: 50px;
+        }
+
+        .mission-text {
+            font-size: 18px;
+            color: #b3b3b3;
+        }
+
+        .mission-highlight {
+            color: #ff6700;
+            font-weight: 600;
+        }
+
+        /* Contact Us Section */
+        .contact-section {
+            background-color: #1f1f1f;
+            padding: 80px 50px;
+            border-radius: 12px;
+            margin-top: 50px;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-form input, 
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background-color: #333333;
+            color: white;
+            font-size: 16px;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: none;
+        }
+
+        .contact-form button {
+            padding: 15px;
+            background-color: #ff6700;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background-color: #e65c00;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <ul class="links-container">
+                <li class="link-item"><a href="index.html">Travels</a></li>
+                <li class="link-item">
+                    <a href="#hero-section">
+                        <img src="img/logo.png" class="logo" alt="logo">
+                    </a>
+                </li>
+                <li class="link-item"><a href="itinerary.html">Itinerary Planner</a></li>
+                <li class="link-item"><a href="testimonials.html">Testimonials</a></li>
+                <li class="link-item"><a href="about.html">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- About Us Content -->
+    <div class="about-container">
+        <h2>About WanderWise</h2>
+        <div class="about-grid">
+            <img src="./Img/himalaya.jpg" alt="About WanderWise" class="about-image">
+            <div class="about-text">
+                <p>
+                    Welcome to <strong>WanderWise</strong>, your go-to travel companion for exploring the beauty and diversity of India. 
+                    We are passionate about making travel planning seamless and personalized. 
+                    Whether you're looking for a relaxing retreat in the hills or a thrilling adventure in the heart of the city, we've got you covered.
+                </p>
+                <p>
+                    Our mission is to provide travelers with detailed itineraries and local insights to make their trips truly memorable. 
+                    At WanderWise, we believe in making every journey as exciting and hassle-free as possible.
+                </p>
+                <p>
+                    With our intuitive itinerary planner and comprehensive guides, you can explore the best of India without the stress of planning. 
+                    Trust us to guide you through a journey filled with rich cultural experiences and breathtaking landscapes.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mission Section -->
+    <div class="mission-section">
+        <h2>Our Mission</h2>
+        <p class="mission-text">
+            At <strong>WanderWise</strong>, our mission is to help every traveler experience the wonders of India in a way that’s tailored to their preferences. 
+            We believe in the power of travel to transform lives, and we aim to make travel <span class="mission-highlight">accessible</span>, <span class="mission-highlight">inclusive</span>, and <span class="mission-highlight">sustainable</span> for everyone.
+        </p>
+        <p class="mission-text">
+            Whether you're traveling solo or with friends and family, we ensure that you have all the tools and recommendations you need to make the most of your journey.
+        </p>
+    </div>
+
+    <!-- Contact Us Section -->
+    <div class="contact-section">
+        <h2>Contact Us</h2>
+        <form id="contact-form" class="contact-form">
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
+    <script>
+        // JavaScript code for handling form submission
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent the default form submission behavior
+
+            // Collect form data
+            const userInputName = document.getElementById('name').value;
+            const userInputEmail = document.getElementById('email').value;
+            const userInputMessage = document.getElementById('message').value;
+
+            // Send form data to the backend
+            fetch('http://localhost:5000/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: userInputName,
+                    email: userInputEmail,
+                    message: userInputMessage,
+                }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Contact form submitted:', data);
+                    alert('Your message has been sent successfully!');
+                })
+                .catch(error => {
+                    console.error('Error submitting contact form:', error);
+                    alert('There was an error sending your message. Please try again.');
+                });
+        });
+    </script>
+</body>
+</html>

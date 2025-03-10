@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Basic Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('img/india.png'); /* Background image */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Form Container */
+        .form-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 10px;
+            width: 350px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        /* Heading */
+        .form-container h2 {
+            margin-bottom: 1rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        /* Input Fields */
+        .form-container input[type="text"],
+        .form-container input[type="password"] {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        /* Buttons */
+        .form-container .submit-btn,
+        .form-container .new-acc-btn {
+            width: 100%;
+            background-color: #161813;
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            transition: background-color 0.3s;
+        }
+
+        .form-container .submit-btn:hover,
+        .form-container .new-acc-btn:hover {
+            background-color: #333;
+        }
+
+        /* Toggle link */
+        .toggle-link {
+            color: #555;
+            cursor: pointer;
+            text-decoration: underline;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Hidden by default */
+        .hidden {
+            display: none;
+        }
+
+        /* Success Message Styling */
+        #success-message {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 10px;
+            width: 350px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            color: black;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <ul class="links-container">
+            <li class="link-item"><a href="index.html">Travels</a></li>
+            <li class="link-item">
+                <a href="#hero-section">
+                  <img src="img/logo.png" class="logo" alt="logo">
+                </a>
+            </li>
+            <li class="link-item"><a href="about.html">About us</a></li>
+            <li class="link-item"><a href="login.html">Login</a></li>
+            <li class="link-item"><a href="testimonials.html">Testimonials</a></li>
+        </ul>
+    </nav>
+</header>
+<!-- Form Container -->
+<div class="form-container">
+    <!-- Login Form -->
+    <div id="login-section">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Enter your username" required>
+            <input type="password" id="password" placeholder="Enter your password" required>
+            <button type="submit" class="submit-btn">Login</button>
+        </form>
+        <p>Don't have an account? <span class="toggle-link" onclick="toggleForm()">Create New Account</span></p>
+    </div>
+
+    <!-- Create Account Form -->
+    <div id="create-account-section" class="hidden">
+        <h2>Create Account</h2>
+        <form id="createAccountForm">
+            <input type="text" id="newUsername" placeholder="Enter new username" required>
+            <input type="password" id="newPassword" placeholder="Enter new password (8 chars min)" required minlength="8">
+            <button type="submit" class="new-acc-btn">Create Account</button>
+        </form>
+        <p>Already have an account? <span class="toggle-link" onclick="toggleForm()">Login here</span></p>
+    </div>
+</div>
+
+<!-- Success Message -->
+<div id="success-message">
+    <h2>Login successful!</h2>
+    <p>Redirecting to your itinerary...</p>
+</div>
+
+<script>
+    // Function to toggle between login and create account forms
+    function toggleForm() {
+        const loginSection = document.getElementById('login-section');
+        const createAccountSection = document.getElementById('create-account-section');
+        
+        // Toggle visibility
+        loginSection.classList.toggle('hidden');
+        createAccountSection.classList.toggle('hidden');
+    }
+
+    // Handle Create Account form submission
+    document.getElementById('createAccountForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        const newUsername = document.getElementById('newUsername').value;
+        const newPassword = document.getElementById('newPassword').value;
+
+        // Check for password length
+        if (newPassword.length < 8) {
+            alert('Password must be at least 8 characters long.');
+            return;
+        }
+
+        // Save to MongoDB via server
+        try {
+            const response = await fetch('http://127.0.0.1:5000/api/auth/create-account', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username: newUsername, password: newPassword })
+            });
+
+            const data = await response.json();
+            if (data.success) {
+                alert('Account created successfully!');
+                toggleForm(); // Switch to login form
+            } else {
+                alert(data.message); // Show alert if username already exists
+            }
+        } catch (error) {
+            alert('Error creating account. Please try again.');
+        }
+    });
+
+    // Handle Login form submission
+    document.getElementById('loginForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        try {
+            const response = await fetch('http://127.0.0.1:5000/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+
+            const data = await response.json();
+            if (data.success) {
+                document.querySelector(".form-container").style.display = "none";  // Hide login form
+                document.getElementById("success-message").style.display = "block"; // Show success message
+                
+                // Redirect to itinerary page after 2 seconds
+                setTimeout(() => window.location.href = "itinerary.html", 2000);
+            } else {
+                alert('Incorrect username or password.');
+            }
+        } catch (error) {
+            alert('Error logging in. Please try again.');
+        }
+    });
+
+
+</script>

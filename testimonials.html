@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Custom styling for the testimonials section */
+        body {
+            background-color: #161813;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 50px; /* Increased top padding to prevent overlap */
+        }
+
+
+        h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 36px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-box {
+            background-color: #262626;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-box:hover {
+            transform: scale(1.05);
+        }
+
+        .testimonial-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            color: #f2f2f2;
+            margin: 10px 0 5px;
+        }
+
+        .testimonial-city {
+            font-size: 14px;
+            color: #b3b3b3;
+        }
+
+        .testimonial-rating {
+            color: #ffc107;
+            margin: 10px 0;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            font-size: 16px;
+            color: #e6e6e6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <ul class="links-container">
+                <li class="link-item"><a href="index.html">Travels</a></li>
+                <li class="link-item">
+                    <a href="#hero-section">
+                        <img src="img/logo.png" class="logo" alt="logo">
+                    </a>
+                </li>
+                <li class="link-item"><a href="itinerary.html">Itinerary Planner</a></li>
+                <li class="link-item"><a href="testimonials.html">Testimonials</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Testimonials Section -->
+    <div class="testimonials-container">
+        <h2>What Our Travelers Say</h2>
+        <div class="testimonial-grid">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-box">
+                <img src="img/profile1.png" alt="Traveler 1" class="testimonial-image">
+                <p class="testimonial-name">Aditya Sharma</p>
+                <p class="testimonial-city">Mumbai, India</p>
+                <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">
+                    "WanderWise made my trip to Ladakh a dream come true. The itinerary planner was so easy to use!"
+                </p>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="testimonial-box">
+                <img src="img/profile2.png" alt="Traveler 2" class="testimonial-image">
+                <p class="testimonial-name">Rahul K</p>
+                <p class="testimonial-city">Delhi, India</p>
+                <div class="testimonial-rating">⭐⭐⭐⭐</div>
+                <p class="testimonial-text">
+                    "An excellent service! I was able to explore Jaipur without any hassle thanks to the recommendations."
+                </p>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="testimonial-box">
+                <img src="img/profile3.png" alt="Traveler 3" class="testimonial-image">
+                <p class="testimonial-name">Shreya M</p>
+                <p class="testimonial-city">Bangalore, India</p>
+                <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">
+                    "The trip to Kerala was unforgettable. WanderWise took care of all the details."
+                </p>
+            </div>
+
+            <!-- Testimonial 4 -->
+            <div class="testimonial-box">
+                <img src="img/profile4.png" alt="Traveler 4" class="testimonial-image">
+                <p class="testimonial-name">Ananya Singh</p>
+                <p class="testimonial-city">Ahmedabad, India</p>
+                <div class="testimonial-rating">⭐⭐⭐⭐</div>
+                <p class="testimonial-text">
+                    "A great experience! The itinerary planner is fantastic and the customer service was top-notch."
+                </p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -24,7 +24,7 @@ const changeSliderImage = () => {
                         currentImage++;
                     }
 
-                    sliderImage.src = `img/${sliderImgs[currentImage]}`;
+                    sliderImage.src = `Img/${sliderImgs[currentImage]}`;
 
                     sliderGrids.map((item, i) => {
                         setTimeout(() => {
